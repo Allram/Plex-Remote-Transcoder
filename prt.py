@@ -44,6 +44,10 @@ if sys.platform == "darwin":
     # OS X
     TRANSCODER_DIR = "/Applications/Plex Media Server.app/Contents/"
     SETTINGS_PATH  = "~/Library/Preferences/com.plexapp.plexmediaserver"
+elif sys.platform.startswith('linux2'):
+    # Synology?
+    TRANSCODER_DIR = "/var/packages/Plex Media Server/target/"
+    SETTINGS_PATH  = "/volume1/Plex/Library/Application Support/Plex Media Server/Preferences.xml"
 elif sys.platform.startswith('linux'):
     # Linux
     TRANSCODER_DIR = "/usr/lib/plexmediaserver/"
@@ -597,13 +601,13 @@ def usage():
     print "Usage:\n"
     print "  %s [options]\n" % os.path.basename(sys.argv[0])
     print (
-        "Options:\n\n" 
-        "  usage, help, -h, ?    Show usage page\n" 
-        "  get_load              Show the load of the system\n" 
-        "  get_cluster_load      Show the load of all systems in the cluster\n" 
-        "  install               Install PRT for the first time and then sets up configuration\n" 
-        "  overwrite             Fix PRT after PMS has had a version update breaking PRT\n" 
-        "  add_host              Add an extra host to the list of slaves PRT is to use\n" 
+        "Options:\n\n"
+        "  usage, help, -h, ?    Show usage page\n"
+        "  get_load              Show the load of the system\n"
+        "  get_cluster_load      Show the load of all systems in the cluster\n"
+        "  install               Install PRT for the first time and then sets up configuration\n"
+        "  overwrite             Fix PRT after PMS has had a version update breaking PRT\n"
+        "  add_host              Add an extra host to the list of slaves PRT is to use\n"
         "  remove_host           Removes a host from the list of slaves PRT is to use\n"
         "  sessions              Display current sessions\n"
         "  check_config          Checks the current configuration for errors\n")
@@ -707,4 +711,3 @@ def main():
     else:
         usage()
         sys.exit(-1)
-
